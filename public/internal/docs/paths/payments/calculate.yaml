@@ -1,0 +1,22 @@
+/payments/calculate:
+  post:
+    summary: Calculate monthly payments without lender information.
+    description: Note - Lease Calculations are not currently supported.
+    parameters:
+      - in: body
+        name: params
+        description: The payload for the calculation
+        required: true
+        schema:
+          $ref: '#/definitions/PaymentCalculation'
+    tags:
+      - Payments
+    responses:
+      '200':
+        description: Successful request
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/TCPaymentsResponse"
+      '400':
+        $ref: "#/definitions/BadRequestResponse"

@@ -1,0 +1,161 @@
+TCPaymentsResponse:
+  type: object
+  properties:
+    request_type:
+      type: string
+      description: The type of request from the client. The types are [Market, Lender, User].
+    response_type:
+      type: string
+      description: The type of request the API responded with. It is possible that the clients request_type cannot be satisfied and a different method is used.
+    finance_type:
+      type: string
+      description: The type of financing deal; either Loan or Lease.
+    group_id:
+      type: integer
+      description: Unique sequence number for each vehicle specified that is assigned by the API. Ascending starting from 0.
+    payments:
+      type: array
+      description: Array of payment options.
+      items:
+        $ref: "#/definitions/TCPaymentResponse"
+
+TCPaymentResponse:
+  type: object
+  properties:
+    acq_loan_fee:
+      type: number
+      description: The amount of the acquisition fee (when lease) or loan fee (when loan).
+    is_acq_loan_fee_capped:
+      type: boolean
+      description: Indicates whether or not the acquisition fee or loan fee is capitalized.
+    amount_financed:
+      type: number
+      description: Amount in dollars financed in the payment. This is typically the total amount borrowed.
+    rebates:
+      type: array
+      description: List of applied rebates
+      items:
+        $ref: "#/definitions/TCRebateResponse"
+    apr:
+      type: number
+      description: The Annual Percentage Rate for the lease or loan. APR is inclusive of any capitalized fees and is typically required by law to be shown to the end consumer.
+    cap_cost_reduction:
+      type: number
+      description: The amount of the capitalization cost reduction. This is the sum of items that helped reduce the capitalized cost amount (for example, the sum of Down Payment, Trade In, and Rebates).
+    cap_cost_total:
+      type: number
+      description: Total capitalized cost of leasing the vehicle in dollars. This is typically the total amount borrowed.
+    credit_tier:
+      type: string
+      description: The tier the customer's credit score falls into. Types are [Poor, Fair, Good, Very Good, Excellent].
+    cust_reserve_dollar:
+      type: number
+      description: This is the dollar amount of the total reserve that the customer pays. This value is the sum of any Dealer Reserve plus any Lender Reserve.
+    disposition_fee:
+      type: number
+      description: The fee that would be due at the end of the lease if the shopper opts to return the vehicle.
+    due_at_signing:
+      type: number
+      description: The amount in dollars (combined trade-in value, down payment, rebates, lender fees etc.) that will need to be paid at the time of signing the contract, in order to get the monthly payment.
+    first_payment_date:
+      type: string
+      format: date
+      description: The date the first payment is due.
+    lender_name:
+      type: string
+      description: A brief name for the lender having meaningful suffixes.
+    branch_name:
+      type: string
+      description: The branch name of the lender.
+    lender_legal_name:
+      type: string
+      description: The full legal name of the lender.
+    lender_program:
+      $ref: "#/definitions/TCLenderProgram"
+    monthly_payment:
+      type: string
+      description: The calculated monthly payment value for a lease or a loan.
+    notes:
+      type: string
+      description: Any system generated notes, exclusions, or warnings associated with the calculated payment.
+    other_fees:
+      type: number
+      description: This field holds the sum (in dollars) of all non-lender fees that the requestor wants to add to the payment calculation. Examples of “OtherFees” may include title fee, plate fee, electronic filing fee, dealer and handling fee, etc.
+    out_of_pocket:
+      type: number
+      description: Amount due from customer out of pocket. OutOfPocket generally indicates the amount the end user is writing the check for.
+    rate_markup:
+      type: number
+      description: Dealer reserve percentage. This is typically derived from the dealer reserve amounts or percentages that are set up in the dealer’s Preference Profile. Oftentimes this is just the difference between the sell rate and the buy rate, or the rate “bump”.
+    rate_type:
+      type: string
+      description: The type of rate; typically MoneyFactor (e.g. for a lease) or InterestRate (e.g. for a loan).
+    rebate:
+      type: number
+      description: The dollar amount of all cash incentives that were applied to this deal.
+    reserve_dollar:
+      type: number
+      description: The amount of reserve due to the dealer in dollars. This is typically derived from the dealer reserve amounts or percentages that are set up in the dealer’s Preference Profile.
+    residual_percentage:
+      type: number
+      description: For leases only. The residual percentage is the forecasted end of lease value of the vehicle expressed as a percentage of its initial value.
+    security_deposit:
+      type: number
+      description: For a lease, the security deposit required by the lender/lessor must be disclosed with the lease payment.
+    sell_rate:
+      type: number
+      description: The rate that is appropriate for the RateType.
+    term:
+      type: integer
+      description: The duration of the loan or lease in months.
+    total_miles:
+      type: integer
+      description: For Leases only. The annual miles times the term in years. This is the maximum miles permitted to be on the vehicle at the end of the lease term without incurring any penalties.
+    total_tax:
+      type: number
+      description: The total amount of taxes pertaining to the payment. Such as state and county tax, registration fee, titling fee, lien fee, etc.
+    trade_allowance:
+      type: number
+      description: The net value of the trade-in applied to the deal. This is an echo back from the CustomerTrade field.
+    disclosure_text:
+      type: string
+      description: What is this?
+
+TCLenderProgram:
+  type: object
+  description: A lender program is a type of financing offer from a lender. Lenders will often offer more than one finance and rate package or program for the same vehicle depending on the customer, dealer, or regional qualifications.
+  properties:
+    product_type:
+      type: string
+      description: The type of financial product such as Lease, PrimeRetail, and SubprimeRetail.
+    program_name:
+      type: string
+      description: Most typically ST (denoting Standard), SP (denoting Special), or RG (denoting Regional).
+    program_type:
+      type: string
+      description: Examples include Standard, Regional, Enhanced, and User.
+    program_start_date:
+      type: string
+      format: date
+      description: The effective start date of the lender program.
+    program_end_date:
+      type: string
+      format: date
+      description: The end date of the lender program.
+    regional_title:
+      type: string
+      description: The title of the program (when it’s regional).
+    regional_description:
+      type: string
+      description: A textual description of the program (when it’s regional). While many regional programs are programs for select geographic regions, some regional programs do not fall into a known geographic region but are only sponsored for select qualifying dealers.
+
+
+TCRebateResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: The TrueCar ID of the Rebate
+    name:
+      type: string
+      description: The TrueCar description of the Rebate
