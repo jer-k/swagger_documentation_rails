@@ -7,7 +7,8 @@ basePath: /
 produces:
   - application/json
 paths:
-  $ref_payments_calculate: paths/payments/calculate.yaml
+  $include:
+    - paths/payments/calculate.yaml
 
 definitions:
   BadRequestResponse:
@@ -20,5 +21,6 @@ definitions:
   RequestTimeoutResponse:
     description: The request timed out.
 
-  $ref_payments_calculate: definitions/payments/calculate.yaml
-  $ref_payments_response: definitions/payments/response.yaml
+  $include:
+    - definitions/payments/calculate.yaml
+    - definitions/payments/response.yaml

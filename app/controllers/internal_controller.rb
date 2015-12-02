@@ -10,12 +10,14 @@ class InternalController < ApplicationController
 
   def build_docs(swagger_docs, parent_key = [])
     swagger_docs.each do |key, value|
-      if key =~ /^\$ref_/
-        data = YAML::load(File.read(Rails.root.join('public/internal/docs', "#{value}")))
-        unless parent_key.empty?
-          hash_for_parent_key(parent_key).merge!(data)
-        else
-          @docs.merge!(data)
+      if key == '$include'
+        value.each do |file|
+          data = YAML::load(File.read(Rails.root.join('public/internal/docs', "#{file}")))
+          unless parent_key.empty?
+            hash_for_parent_key(parent_key).merge!(data)
+          else
+            @docs.merge!(data)
+          end
         end
       elsif value.is_a?(Hash)
         unless parent_key.empty?
