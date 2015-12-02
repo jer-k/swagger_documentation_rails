@@ -10,6 +10,9 @@ gem 'jbuilder', '~> 2.0'
 group :development, :test do
   gem 'pry'
   gem 'pry-rails'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'apivore'
 end
 
 group :development do
