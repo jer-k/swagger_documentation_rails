@@ -1,4 +1,4 @@
-PaymentCalculation:
+PaymentCalculationPayload:
   type: object
   required:
     - zip_code
@@ -8,16 +8,18 @@ PaymentCalculation:
     zip_code:
       type: integer
       description: The zip code used by the system to match the applicable funding and rebate region.
+      default: 94109
     finance_type:
       type: string
-      description: The type of financing deal; either Loan or Lease.
+      description: The type of financing deal; types are [Loan, Lease].
+      default: Loan
     payment_calculations:
       type: array
       description: Each calculation includes payment information (Vehicle MSRP, Down Payment, Trade In), customer information (Credit Tier), and the Term for the payments.
       items:
-        $ref: "#/definitions/TCPaymentCalculation"
+        $ref: "#/definitions/PaymentCalculation"
 
-TCPaymentCalculation:
+PaymentCalculation:
   type: object
   required:
     - msrp
@@ -29,18 +31,24 @@ TCPaymentCalculation:
     msrp:
       type: number
       description:  The MSRP that is shown to the customer.
+      default: 20000
     down_payment:
       type: number
       description: The cash down that the customer wishes to apply.
+      default: 1000
     customer_trade:
       type: number
       description: The trade in allowance of the customer’s vehicle to be used as trade (when applicable). This is the amount the customer owns after paying off any loans outstanding on the trade.
+      default: 1000
     credit_tier:
       type: string
       description: The tier the customer's credit score falls into. Types are [Poor, Fair, Good, Very Good, Excellent].
+      default: Good
     term:
       type: integer
       description: The length of term which payment estimates are desired. Any term between 12 and 107 is valid.
+      default: 36
     apr:
       type: number
       description: The interest rate the customer will pay on the loan.
+      default: 5

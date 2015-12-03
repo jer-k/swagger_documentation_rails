@@ -1,4 +1,4 @@
-TCPaymentsResponse:
+PaymentsResponse:
   type: object
   properties:
     request_type:
@@ -17,9 +17,9 @@ TCPaymentsResponse:
       type: array
       description: Array of payment options.
       items:
-        $ref: "#/definitions/TCPaymentResponse"
+        $ref: "#/definitions/PaymentResponse"
 
-TCPaymentResponse:
+PaymentResponse:
   type: object
   properties:
     acq_loan_fee:
@@ -35,7 +35,7 @@ TCPaymentResponse:
       type: array
       description: List of applied rebates
       items:
-        $ref: "#/definitions/TCRebateResponse"
+        $ref: "#/definitions/PaymentsRebateResponse"
     apr:
       type: number
       description: The Annual Percentage Rate for the lease or loan. APR is inclusive of any capitalized fees and is typically required by law to be shown to the end consumer.
@@ -71,7 +71,7 @@ TCPaymentResponse:
       type: string
       description: The full legal name of the lender.
     lender_program:
-      $ref: "#/definitions/TCLenderProgram"
+      $ref: "#/definitions/PaymentsLenderProgramResponse"
     monthly_payment:
       type: string
       description: The calculated monthly payment value for a lease or a loan.
@@ -121,7 +121,7 @@ TCPaymentResponse:
       type: string
       description: What is this?
 
-TCLenderProgram:
+PaymentsLenderProgramResponse:
   type: object
   description: A lender program is a type of financing offer from a lender. Lenders will often offer more than one finance and rate package or program for the same vehicle depending on the customer, dealer, or regional qualifications.
   properties:
@@ -150,7 +150,7 @@ TCLenderProgram:
       description: A textual description of the program (when it’s regional). While many regional programs are programs for select geographic regions, some regional programs do not fall into a known geographic region but are only sponsored for select qualifying dealers.
 
 
-TCRebateResponse:
+PaymentsRebateResponse:
   type: object
   properties:
     id:

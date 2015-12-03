@@ -1,14 +1,15 @@
 /payments/calculate:
   post:
     summary: Calculate monthly payments without lender information.
-    description: Note - Lease Calculations are not currently supported.
+    description: |
+     Wiki Page: http://git.truecarcorp.com/jkreutzbender/swagger_documentation_example/wiki/PaymentsCalculate
     parameters:
       - in: body
         name: params
         description: The payload for the calculation
         required: true
         schema:
-          $ref: '#/definitions/PaymentCalculation'
+          $ref: '#/definitions/PaymentCalculationPayload'
     tags:
       - Payments
     responses:
@@ -17,6 +18,6 @@
         schema:
           type: array
           items:
-            $ref: "#/definitions/TCPaymentsResponse"
+            $ref: "#/definitions/PaymentsResponse"
       '400':
         $ref: "#/definitions/BadRequestResponse"
