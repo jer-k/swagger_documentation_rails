@@ -2,8 +2,18 @@
 
 This repo is an example of how to set up Swagger documentation and a test to validate your specification against JSON Schema
 
-* Full instructions
+* Full instructions on setting up the documentation
 Checkout the wiki over there ->
 
 or click over here -> http://git.truecarcorp.com/jkreutzbender/swagger_documentation_example/wiki
+
+* Running the example
+If you haven't ever previously had a Rails project on your computer, reach out and I can help
+
+  * cd ~/workspace/wherever_you_want_it_live
+  * git clone http://git.truecarcorp.com/jkreutzbender/swagger_documentation_example.git
+  * cd swagger_documentation_example
+  * rails s
+  * visit http://localhost:3000/internal/docs/swagger.json in a browser to view the the documentation in JSON format
+  * visit http://localhost:3000/internal/swagger-ui/index.html to use Swagger-UI to view the documentation
 
