@@ -18,5 +18,5 @@ bundle exec rspec spec/requests/swagger_spec.rb
 ```ruby
 bundle exec rails s
 ```
-Browse to [http://localhost:3000/internal/swagger-ui/index.html] and enjoy!
+Browse to [http://localhost:3000/internal/swagger-ui/index.html]() and enjoy!
 
