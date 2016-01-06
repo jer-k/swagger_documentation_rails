@@ -1,20 +1,20 @@
-== README
+This repo is an example of how to set up Swagger documentation and a test to validate your specification against JSON Schema.
 
-This repo is an example of how to set up Swagger documentation and a test to validate your specification against JSON Schema
+Have a look at the blog post I wrote explaining everything [here](http://tbd.com).
 
-* Install Swagger-UI
+### Install Swagger-UI
 ```ruby
 npm install
 node_modules/.bin/bower install
 bundle exec rake swagger:create
 ```
 
-* Test Swagger Specification
+### Test Swagger Specification
 ```ruby
 bundle exec rspec spec/requests/swagger_spec.rb 
 ```
 
-* View Swagger-UI
+### View Swagger-UI
 ```ruby
 bundle exec rails s
 ```
