@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
     @error = "The #{parameter_missing_exception.param} parameter is missing"
     render 'shared/error', status: :bad_request
   end
+
+  rescue_from(ArgumentError) do |argument_error|
+    @error = argument_error.message
+    render 'shared/error', status: :bad_request
+  end
 end

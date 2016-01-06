@@ -2,7 +2,7 @@
   post:
     summary: Calculate monthly payments without lender information.
     description: |
-     Wiki Page: http://git.truecarcorp.com/jkreutzbender/swagger_documentation_example/wiki/PaymentsCalculate
+     Calculate how much you'll pay per month on your car loan.
     parameters:
       - in: body
         name: params
@@ -20,4 +20,6 @@
           items:
             $ref: "#/definitions/PaymentsResponse"
       '400':
-        $ref: "#/definitions/BadRequestResponse"
+        description: Required parameters are missing or invalid.
+        schema:
+          $ref: "#/definitions/BadRequestResponse"

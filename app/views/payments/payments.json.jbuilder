@@ -1,10 +1,10 @@
-json.payments_groups @payments do |payment|
+json.payments_response @payments do |response|
 
-  json.request_type   payment[:request_type]
-  json.response_type  payment[:response_type]
-  json.finance_type   payment[:finance_type]
-  json.group_id       payment[:group_id]
-  json.payments payment[:payments] do |p|
-    json.partial! 'payment', payment: p
+  json.request_type   response[:request_type]
+  json.response_type  response[:response_type]
+  json.finance_type   response[:finance_type]
+  json.group_id       response[:group_id]
+  json.payment do
+    json.partial! 'payment', payment: response[:payment]
   end
 end

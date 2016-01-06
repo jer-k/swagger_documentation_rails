@@ -1,15 +1,5 @@
 module Calculators
   class Loan
-    # Calculates the monthly payment amount for a group of inputs
-    # @param payments [Array<Hash>]
-    #
-    # @return [Array<Integer>]
-    def calculate_monthly_payments(payments)
-      payments.map do |payment|
-        calculate_monthly_payment(payment[:term], payment[:msrp], payment[:apr], payment[:dealer_reserve] || 0)
-      end
-    end
-
     # Calculates the monthly payment amount
     # @param term [Integer] the number of months financed
     # @param principle [Float]
@@ -29,13 +19,20 @@ module Calculators
     end
 
     # Builds a hash to serve as the response to a Payments calculate call
-    # @param calculations
+    # @param calculations [Array<Hash>]
+    #
+    # @option calculations [Integer] :msrp
+    # @option calculations [Integer] :down_payment
+    # @option calculations [Integer] :customer_trade
+    # @option calculations [String]  :credit_tier
+    # @option calculations [Integer] :term
+    # @option calculations [Float]   :apr
     #
     # @return [Array<Hash>]
     def build_calculate_response(calculations)
-      request_type = "MARKET RATE"
-      response_type = "MARKET_TYPE"
-      finance_type = "LOAN"
+      request_type = "Native"
+      response_type = "Native"
+      finance_type = "Loan"
       group_id = 0
 
       payments = calculations.map do |payment_calculation|
@@ -61,7 +58,7 @@ module Calculators
           due_at_signing: due_at_signing,
           monthly_payment: monthly_payment,
           sell_rate: apr,
-          term: term,
+          term: term
         }
       end
 
@@ -71,7 +68,7 @@ module Calculators
           response_type: response_type,
           finance_type: finance_type,
           group_id: group_id,
-          payments: [payment]
+          payment: payment
         }
 
         group_id += 1

@@ -3,21 +3,18 @@ PaymentsResponse:
   properties:
     request_type:
       type: string
-      description: The type of request from the client. The types are [Market, Lender, User].
+      description: The type of request from the client. The types are [Lender, Native].
     response_type:
       type: string
       description: The type of request the API responded with. It is possible that the clients request_type cannot be satisfied and a different method is used.
     finance_type:
       type: string
-      description: The type of financing deal; either Loan or Lease.
+      description: The type of financing deal; types are [Loan, Lease].
     group_id:
       type: integer
       description: Unique sequence number for each vehicle specified that is assigned by the API. Ascending starting from 0.
-    payments:
-      type: array
-      description: Array of payment options.
-      items:
-        $ref: "#/definitions/PaymentResponse"
+    payment:
+      $ref: "#/definitions/PaymentResponse"
 
 PaymentResponse:
   type: object

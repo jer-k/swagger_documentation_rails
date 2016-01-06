@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
-  title: Financing API
-  description: Providing Finance and Lease information to TrueCar customers and dealers
+  title: Swagger Documentation Rails Example
+  description: An example of setting up Swagger Documentation for a Rails application
   version: 1.0.0
 basePath: /
 produces:
