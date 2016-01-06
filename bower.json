@@ -1,0 +1,7 @@
+{
+  "name": "swagger_documentation_rails",
+  "private": true,
+  "dependencies": {
+    "swagger-ui": "https://github.com/swagger-api/swagger-ui.git#v2.1.3"
+  }
+}
