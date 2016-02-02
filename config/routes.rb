@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   scope '/internal' do
-    get 'docs/swagger' => "internal#swagger", constraints: { format: 'json' }
+    get 'swagger' => "internal#swagger", constraints: { format: 'json' }
   end
 
   resources :payments, only: [] do

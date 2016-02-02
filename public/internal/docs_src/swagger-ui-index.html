@@ -28,13 +28,18 @@
   <!-- <script src='lang/en.js' type='text/javascript'></script> -->
 
   <script type="text/javascript">
+    // Add trailing slash to path if missing,
+    // so relative CSS and JS sources load
+    if (location.pathname.indexOf('.html') == -1 && location.pathname.substr(-1) != '/')
+      location.pathname += '/';
+
     $(function () {
       // Pre load translate...
       if(window.SwaggerTranslator) {
         window.SwaggerTranslator.translate();
       }
       window.swaggerUi = new SwaggerUi({
-        url: '/internal/docs/swagger.json',
+        url: '/internal/swagger.json',
         dom_id: "swagger-ui-container",
         supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
         onComplete: function(swaggerApi, swaggerUi){

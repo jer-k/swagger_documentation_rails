@@ -2,7 +2,7 @@ class InternalController < ApplicationController
 
   def swagger
     @docs = {}
-    build_docs(YAML::load(File.read(Rails.root.join('public/internal/docs', 'api.swagger.yaml'))))
+    build_docs(YAML::load(File.read(Rails.root.join('public/internal/docs_src', 'api.swagger.yaml'))))
     render json: @docs.to_json
   end
 
@@ -12,7 +12,7 @@ class InternalController < ApplicationController
     swagger_docs.each do |key, value|
       if key == '$include'
         value.each do |file|
-          data = YAML::load(File.read(Rails.root.join('public/internal/docs', "#{file}")))
+          data = YAML::load(File.read(Rails.root.join('public/internal/docs_src', "#{file}")))
           unless parent_key.empty?
             hash_for_parent_key(parent_key).merge!(data)
           else
